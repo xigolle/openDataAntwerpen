@@ -2,6 +2,7 @@
  * 
  Node JS file for the server configuration 
  Server works on port 3000
+ File sends all the information including the different sub folders
  </summary>*/
 
 var express = require("express");

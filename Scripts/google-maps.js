@@ -21,7 +21,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     }, function (response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
-            console.write("het werkt volledig")
+            console.log("het werkt volledig");
         } else {
             window.alert('Directions request failed due to ' + status);
         }

@@ -17,9 +17,14 @@ request('http://datasets.antwerpen.be/v4/gis/wifiopenbaar.json', function (error
        
     }
 });
+
+//make sure it gets all the folders and files.
 app.use(express.static(path.join(__dirname, '')));
+
+//get the url and send the index.html
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname+"/index.html"));
+    res.render('mytemplate', { data: OpenWifiSpots });
 });
-
+//listen to port 3000 
 app.listen(3000);

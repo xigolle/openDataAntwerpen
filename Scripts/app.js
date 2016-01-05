@@ -2,4 +2,5 @@
 
 app.controller("JSONController", function ($scope, $interval) {
     console.log("hello json controller");
+    console.log(JSON.stringify(mytemplate));
 });

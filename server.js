@@ -9,11 +9,12 @@ var express = require("express");
 var app = express();
 var request = require("request");
 var path = require('path');
+var OpenWifiSpots;
 
-
-request('http://modulus.io', function (error, response, body) {
+request('http://datasets.antwerpen.be/v4/gis/wifiopenbaar.json', function (error, response, body) {
     if (!error && response.statusCode == 200) {
-        console.log(body)//show the HTML for the modulus homepage
+        OpenWifiSpots = JSON.parse(body);
+       
     }
 });
 app.use(express.static(path.join(__dirname, '')));

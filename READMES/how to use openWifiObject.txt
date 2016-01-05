@@ -1,0 +1,33 @@
+how to call from object:
+data is an array which you can access with a index like the following:
+
+OpenWifiSpots.data[0].[one of the bottom one]
+
+id: '116',
+    objectid: '39',
+    point_lat: '51.28249916219000',
+    point_lng: '4.44340042654280',
+    id_wifi: '209',
+    klant: 'Stad',
+    locatie: 'CC Ekeren',
+    straat: 'Veltwijcklaan',
+    huisnr: '252',
+    postcode: '2180',
+    gemeente: 'Ekeren',
+    huidige_dekking: 'volledig',
+    private: 'ja',
+    private_mobile: 'ja',
+    wifi_balie: null,
+    lokale_wifi: null,
+    museumtracker: null,
+    wireless_scholen: null,
+    zb_alarm: null,
+    bewoner: null,
+    stad_gratis_wifi: 'ja',
+    stad_gratis_wifi_citymesh: null,
+    aanvraag_uitbreiding: null,
+    geraamd_budget: null,
+    timing: null,
+    opmerking: null,
+    publ: 'wel publiceren',
+    shape: null }

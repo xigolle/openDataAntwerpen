@@ -89,7 +89,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                     alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
                     //initialLocation = siberia;
                 }
-                //map.setCenter(initialLocation);
+                map.setCenter({ lat: 51.219710, lng: 4.409398 });
             }
 
             marker = new google.maps.Marker({

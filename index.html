@@ -5,7 +5,7 @@
     <!--<script src="Scripts/google-maps.js"></script>-->
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/ui-bootstrap-tpls-1.0.3.min.js"></script>
-
+    <link href="css/style.css" rel="stylesheet" />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbZdBWAgvz6PufD4DPioIBk-nxd4B9dSw"></script>
     
     <!-- Do not add bootstrap js because it can give errors with angularJS -->
@@ -29,12 +29,16 @@
     <div id="map" ng-controller="MapController">
 
     </div>
+
     Welcome on our Angular website
     <div id="WifiSpots" ng-controller="ListController">
-        <ul>
-            {{value}}
-            <li ng-repeat="naam in $scope.items">{{naam}}</li>
-        </ul>
+        <div ng-repeat="item in openData">
+            <ul>
+                <li>{{item.locatie}}</li>
+                <li>{{item.gemeente}}</li>
+            </ul>
+        </div>
+       
 
 
     </div>

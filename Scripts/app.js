@@ -39,12 +39,11 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
     
     
         initialize = function () {
-            console.log(OpenWifiData.data);
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
-                center: { lat: 41.85, lng: -87.65 }
+                center: { lat: 51.229109, lng: 4.422194 }
             });
 
             var icon = {
@@ -54,7 +53,6 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
             };
 
             for (var i = 0 ; i < OpenWifiData.data.length; i++) {
-                console.log(OpenWifiData.data[i]);
                 marker = new google.maps.Marker({
                     map: map,
                     position: { lat:  parseFloat(OpenWifiData.data[i].point_lat), lng: parseFloat(OpenWifiData.data[i].point_lng) },
@@ -127,13 +125,16 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
 });
 
 app.controller("ListController", function ($scope, $interval, $http, myService) {
+    $scope.naam = "joey";
+    $scope.value = "value";
+    $scope.item = "item";
     //$scope.value = OpenWifiData.data;
     myService.async().then(function (d) {
-        $scope.openData
+        $scope.openData = d;
     })
     
 });
-
+//TODO: lijst mooier maken en button toevoegen.
 
 
 

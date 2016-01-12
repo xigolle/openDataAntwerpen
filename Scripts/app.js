@@ -26,6 +26,13 @@ app.controller("MapController", function ($scope) {
             zoom: 7,
             center: { lat: 41.85, lng: -87.65 }
         });
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: { lat: 40.85, lng: -87.65 },
+            title: 'Hello World!'
+        });
+
         directionsDisplay.setMap(map);
 
         onChangeHandler = function () {

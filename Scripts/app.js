@@ -43,7 +43,7 @@ app.controller("MapController", function ($scope) {
         }, function (response, status) {
             if (status === google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
-                document.write("het werkt volledig")
+                console.log("het werkt volledig");
             } else {
                 window.alert('Directions request failed due to ' + status);
             }

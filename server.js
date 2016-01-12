@@ -13,6 +13,7 @@ var OpenWifiSpots;
 
 request('http://datasets.antwerpen.be/v4/gis/wifiopenbaar.json', function (error, response, body) {
     if (!error && response.statusCode == 200) {
+        //parse json object in body
         OpenWifiSpots = JSON.parse(body);
        
     }
@@ -21,10 +22,17 @@ request('http://datasets.antwerpen.be/v4/gis/wifiopenbaar.json', function (error
 //make sure it gets all the folders and files.
 app.use(express.static(path.join(__dirname, '')));
 
+app.get("/api/openData", function (req, res) {
+    //api with the json data on the server. Retrieved from app.get
+    res.json(OpenWifiSpots);
+
+
+});
 //get the url and send the index.html
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname+"/index.html"));
     res.render('mytemplate', { data: OpenWifiSpots });
+    
 });
 //listen to port 3000 
 app.listen(3000);

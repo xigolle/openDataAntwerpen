@@ -32,13 +32,12 @@ app.factory('myService', function ($http) {
 app.controller("MapController", function ($scope, $interval, $http, myService) {
 
     //function which retrieves the data when retrieved sets it in the correct variable
-    myService.async().then(function (d) {
-        //$scope.data = d;
-        //console.log(OpenWifiData);
-    })
+    OpenWifiData = myService.async().then(function (d) {
+        //when json data is retrieved update map
+        initialize();
+    });
     
-    
-        initialize = function () {
+       initialize = function () {
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
             map = new google.maps.Map(document.getElementById('map'), {
@@ -114,7 +113,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
-
+        
     
     //.error(function (err) {
     //    console.log(err);
@@ -128,6 +127,7 @@ app.controller("ListController", function ($scope, $interval, $http, myService) 
     $scope.naam = "joey";
     $scope.value = "value";
     $scope.item = "item";
+    $scope.test = OpenWifiData;
     //$scope.value = OpenWifiData.data;
     myService.async().then(function (d) {
         $scope.openData = d;

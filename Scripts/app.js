@@ -8,9 +8,7 @@ var bootstrap = angular.module("myBootstrap",['ui.bootstrap'])
 
 var OpenWifiData; //variable to store openWifiData
 
-app.controller("ListController", function ($scope, $interval, $http) {
-    $scope.value = "Hallo Joey";
-});
+
 
 app.controller("MapController", function ($scope, $interval, $http) {
 
@@ -81,6 +79,9 @@ app.controller("MapController", function ($scope, $interval, $http) {
    
 });
 
-
+app.controller("ListController", function ($scope, $interval, $http) {
+    //$scope.value = OpenWifiData.data;
+    console.log(OpenWifiData);
+});
 
 

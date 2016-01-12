@@ -1,7 +1,7 @@
 ﻿var app = angular.module("myapp", []);
 
 
-var bootstrap = angular.module("myBootstrap",['ui.bootstrap'])
+var bootstrap = angular.module("myBootstrap", ['ui.bootstrap'])
 
 
 
@@ -10,16 +10,34 @@ var OpenWifiData; //variable to store openWifiData
 var initialLocation;
 var browserSupportFlag = new Boolean();
 
+app.factory('myService', function ($http) {
+    var myService = {
+        async: function () {
+            //$http returns a promise, which has a then function, which also returns a promise
+            var promise = $http.get('http://localhost:3000/api/openData').then(function (response) {
+                //the then function here is an opportunity to modify the response
+                //the return value gets picked up by the then in the controller
+                OpenWifiData = response.data;
+                return response.data.data;
+            });
+            //return promise to controller
+            return promise;
+        }
+    }
+    return myService;
+});
 
 
-app.controller("MapController", function ($scope, $interval, $http) {
 
-    $http.get("http://localhost:3000/api/openData")
-    .success(function (posts) {
-        //collect the data from the api and put it in a object
-        OpenWifiData = posts;
-        $scope.items = OpenWifiData.data[0];
-        console.log($scope.items);
+app.controller("MapController", function ($scope, $interval, $http, myService) {
+
+    //function which retrieves the data when retrieved sets it in the correct variable
+    myService.async().then(function (d) {
+        //$scope.data = d;
+        //console.log(OpenWifiData);
+    })
+    
+    
         initialize = function () {
             console.log(OpenWifiData.data);
             directionsService = new google.maps.DirectionsService;
@@ -42,7 +60,7 @@ app.controller("MapController", function ($scope, $interval, $http) {
                     position: { lat:  parseFloat(OpenWifiData.data[i].point_lat), lng: parseFloat(OpenWifiData.data[i].point_lng) },
                     title: OpenWifiData.data[i].locatie,
                     icon: icon
-                    
+
                 });
             }
 
@@ -96,21 +114,24 @@ app.controller("MapController", function ($scope, $interval, $http) {
                 }
             });
         }
-        
-        google.maps.event.addDomListener(window, 'load', initialize);
-        
-    })
-    .error(function (err) {
-        console.log(err);
-    });
 
-   
-   
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    
+    //.error(function (err) {
+    //    console.log(err);
+    //});
+
+    
+
 });
 
-app.controller("ListController", function ($scope, $interval, $http) {
+app.controller("ListController", function ($scope, $interval, $http, myService) {
     //$scope.value = OpenWifiData.data;
-    console.log(OpenWifiData);
+    myService.async().then(function (d) {
+        $scope.openData
+    })
+    
 });
 
 

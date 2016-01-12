@@ -1,14 +1,25 @@
 ﻿var app = angular.module("myapp", []);
 
 
+var bootstrap = angular.module("myBootstrap",['ui.bootstrap'])
+
+
+
+
 var OpenWifiData; //variable to store openWifiData
 
-//Json controller to get the JSON data from the api
-app.controller("MapController", function ($scope, $interval,$http) {
+app.controller("ListController", function ($scope, $interval, $http) {
+    $scope.value = "Hallo Joey";
+});
+
+app.controller("MapController", function ($scope, $interval, $http) {
+
     $http.get("http://localhost:3000/api/openData")
     .success(function (posts) {
         //collect the data from the api and put it in a object
         OpenWifiData = posts;
+        $scope.items = OpenWifiData.data[0];
+        console.log($scope.items);
         initialize = function () {
             console.log(OpenWifiData.data);
             directionsService = new google.maps.DirectionsService;
@@ -65,6 +76,8 @@ app.controller("MapController", function ($scope, $interval,$http) {
     .error(function (err) {
         console.log(err);
     });
+
+   
    
 });
 

@@ -7,6 +7,8 @@ var bootstrap = angular.module("myBootstrap",['ui.bootstrap'])
 
 
 var OpenWifiData; //variable to store openWifiData
+var initialLocation;
+var browserSupportFlag = new Boolean();
 
 
 
@@ -42,7 +44,34 @@ app.controller("MapController", function ($scope, $interval, $http) {
                     icon: icon
                     
                 });
-            }          
+            }
+
+            // Try W3C Geolocation (Preferred)
+            if (navigator.geolocation) {
+                browserSupportFlag = true;
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.setCenter(initialLocation);
+                }, function () {
+                    handleNoGeolocation(browserSupportFlag);
+                });
+            }
+                // Browser doesn't support Geolocation
+            else {
+                browserSupportFlag = false;
+                handleNoGeolocation(browserSupportFlag);
+            }
+
+            function handleNoGeolocation(errorFlag) {
+                if (errorFlag == true) {
+                    alert("Geolocation service failed.");
+                    //initialLocation = newyork;
+                } else {
+                    alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+                    //initialLocation = siberia;
+                }
+                //map.setCenter(initialLocation);
+            }
 
             directionsDisplay.setMap(map);
 
@@ -83,5 +112,7 @@ app.controller("ListController", function ($scope, $interval, $http) {
     //$scope.value = OpenWifiData.data;
     console.log(OpenWifiData);
 });
+
+
 
 

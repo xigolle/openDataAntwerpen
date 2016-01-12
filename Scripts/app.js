@@ -10,21 +10,28 @@ app.controller("MapController", function ($scope, $interval,$http) {
         //collect the data from the api and put it in a object
         OpenWifiData = posts;
         initialize = function () {
+            console.log(OpenWifiData.data);
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 7,
                 center: { lat: 41.85, lng: -87.65 }
             });
-            //console.log(OpenWifiData.data[0]);
+
+            var icon = {
+                url: "../Images/WifiIcon.png",
+                scaledSize: new google.maps.Size(50,50)
+                //origin: new google.maps.Point(0,0)
+            };
 
             for (var i = 0 ; i < OpenWifiData.data.length; i++) {
                 console.log(OpenWifiData.data[i]);
                 marker = new google.maps.Marker({
                     map: map,
                     position: { lat:  parseFloat(OpenWifiData.data[i].point_lat), lng: parseFloat(OpenWifiData.data[i].point_lng) },
-                    title: OpenWifiData.data[i].locatie
-                    //icon: '../Images/WifiIcon.png'
+                    title: OpenWifiData.data[i].locatie,
+                    icon: icon
+                    
                 });
             }          
 
@@ -51,8 +58,9 @@ app.controller("MapController", function ($scope, $interval,$http) {
                 }
             });
         }
-
+        
         google.maps.event.addDomListener(window, 'load', initialize);
+        
     })
     .error(function (err) {
         console.log(err);
@@ -60,53 +68,6 @@ app.controller("MapController", function ($scope, $interval,$http) {
    
 });
 
-/*app.controller("MapController", function ($scope) {
-    //console.log("hello map controller");
-
-    initialize = function () {
-        directionsService = new google.maps.DirectionsService;
-        directionsDisplay = new google.maps.DirectionsRenderer;
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 7,
-            center: { lat: 41.85, lng: -87.65 }
-        });
-        //console.log(OpenWifiData.data[0]);
-
-        for (var i = 0 ; i < OpenWifiData.data.length; i++) {
-            console.log(OpenWifiData.data.length);
-        }
-        marker = new google.maps.Marker({
-            map: map,
-            position: { lat: 40.85, lng: -87.65 },
-            title: 'Hello World!'
-        });
-
-        directionsDisplay.setMap(map);
-
-        onChangeHandler = function () {
-            calculateAndDisplayRoute(directionsService, directionsDisplay);
-        };
-        //onChangeHandler();
-    }
-
-    
-    calculateAndDisplayRoute = function () {
-        directionsService.route({
-            origin: { lat: 40.85, lng: -87.65 },
-            destination: { lat: 45.85, lng: -87.35 },
-            travelMode: google.maps.TravelMode.WALKING
-        }, function (response, status) {
-            if (status === google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(response);
-                console.log("het werkt volledig");
-            } else {
-                window.alert('Directions request failed due to ' + status);
-            }
-        });
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-});*/
 
 
 

@@ -32,19 +32,21 @@ app.factory('myService', function ($http) {
 app.controller("MapController", function ($scope, $interval, $http, myService) {
 
     //function which retrieves the data when retrieved sets it in the correct variable
-    myService.async().then(function (d) {
+    OpenWifiData = myService.async().then(function (d) {
         //$scope.data = d;
         //console.log(OpenWifiData);
-    })
+        console.log("When am i done?");
+        initialize();
+    });
+
     
     
         initialize = function () {
-            
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
-                center: { lat: 51.219710, lng: 4.409398 }
+                //center: { lat: 51.219710, lng: 4.409398 }
             });
 
             var icon = {
@@ -54,7 +56,6 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
             };
 
             for (var i = 0 ; i < OpenWifiData.data.length; i++) {
-                console.log(OpenWifiData.data[i]);
                 marker = new google.maps.Marker({
                     map: map,
                     position: { lat:  parseFloat(OpenWifiData.data[i].point_lat), lng: parseFloat(OpenWifiData.data[i].point_lng) },
@@ -95,9 +96,10 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                 map: map,
                 position: initialLocation,
                 title: "User"
-
+                
             });
 
+            console.log('usermarker');
             directionsDisplay.setMap(map);
 
             onChangeHandler = function () {
@@ -122,7 +124,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
             });
         }
 
-        google.maps.event.addDomListener(window, 'load', initialize);
+        //google.maps.event.addDomListener(window, 'load', initialize);
 
     
     //.error(function (err) {
@@ -134,13 +136,16 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
 });
 
 app.controller("ListController", function ($scope, $interval, $http, myService) {
+    $scope.naam = "joey";
+    $scope.value = "value";
+    $scope.item = "item";
     //$scope.value = OpenWifiData.data;
     myService.async().then(function (d) {
-        $scope.openData
+        $scope.openData = d;
     })
     
 });
-
+//TODO: lijst mooier maken en button toevoegen.
 
 
 

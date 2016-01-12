@@ -1,13 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <!--<link rel="stylesheet" href="css/bootstrap.css" />-->
+    <!--<script src="Scripts/google-maps.js"></script>-->
     <script src="Scripts/angular.js"></script>
+    <script src="Scripts/ui-bootstrap-tpls-1.0.3.min.js"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbZdBWAgvz6PufD4DPioIBk-nxd4B9dSw"></script>
     
-
+    <!-- Do not add bootstrap js because it can give errors with angularJS -->
+    <!--<script src="js/bootstrap.js"></script>-->
     <script src="Scripts/app.js"></script>
-    <!--<script src="Scripts/google-maps.js"></script>-->
     <title>Open Wifi Spots</title>
 
 	<meta charset="utf-8" />
@@ -22,13 +25,26 @@
 
 
 <body ng-app="myapp">
-   <!-- <div id="JSON-Data" ng-controller="JSONController">
-
-    </div>-->
+  
     <div id="map" ng-controller="MapController">
 
     </div>
     Welcome on our Angular website
+    <div id="WifiSpots" ng-controller="ListController">
+        <ul>
+            {{value}}
+            <li ng-repeat="naam in $scope.items">{{naam}}</li>
+        </ul>
 
+
+    </div>
+
+
+
+
+
+    
+
+    
 </body>
 </html>

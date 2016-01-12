@@ -34,6 +34,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
     //function which retrieves the data when retrieved sets it in the correct variable
     OpenWifiData = myService.async().then(function (d) {
         //when json data is retrieved update map
+        console.log("nu mag je google maps");
         initialize();
     });
     
@@ -44,7 +45,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                 zoom: 14,
                 center: { lat: 51.229109, lng: 4.422194 }
             });
-
+            console.log("ik kom hier te vroeg?");
             var icon = {
                 url: "../Images/WifiIcon.png",
                 scaledSize: new google.maps.Size(50,50)
@@ -112,7 +113,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
             });
         }
 
-        google.maps.event.addDomListener(window, 'load', initialize);
+        //google.maps.event.addDomListener(window, 'load', initialize);
         
     
     //.error(function (err) {

@@ -39,12 +39,12 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
     
     
         initialize = function () {
-            console.log(OpenWifiData.data);
+            
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
-                center: { lat: 41.85, lng: -87.65 }
+                center: { lat: 51.219710, lng: 4.409398 }
             });
 
             var icon = {
@@ -90,6 +90,13 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                 }
                 //map.setCenter(initialLocation);
             }
+
+            marker = new google.maps.Marker({
+                map: map,
+                position: initialLocation,
+                title: "User"
+
+            });
 
             directionsDisplay.setMap(map);
 

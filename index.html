@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <!--<link rel="stylesheet" href="css/bootstrap.css" />-->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
     <!--<script src="Scripts/google-maps.js"></script>-->
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/ui-bootstrap-tpls-1.0.3.min.js"></script>
@@ -33,9 +34,11 @@
     Welcome on our Angular website
     <div id="WifiSpots" ng-controller="ListController">
         <div ng-repeat="item in openData">
-            <ul>
-                <li>{{item.locatie}}</li>
-                <li>{{item.gemeente}}</li>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    {{item.locatie}}
+                    {{item.gemeente}}
+                </li>
             </ul>
         </div>
        

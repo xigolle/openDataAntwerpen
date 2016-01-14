@@ -123,7 +123,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                     directionsDisplay.setMap(map);
                     $scope.calculateAndDisplayRoute(closest);
 
-                    calculateAndDisplayRoute(/*directionsService, directionsDisplay*/);
+                    //calculateAndDisplayRoute(/*directionsService, directionsDisplay*/);
                     var service = new google.maps.DistanceMatrixService();
                     service.getDistanceMatrix(
                       {
@@ -133,7 +133,8 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                       }, callback);
 
                     function callback(response, status) {
-                        console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
+						//heb deze lijn gecomment heb geen idee wat het deed maar gaf wel error bij .text
+                        //console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
                     }
 
                 }

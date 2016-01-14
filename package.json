@@ -1,0 +1,28 @@
+{
+  "name": "opendataantwerpen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "angular-ui-bootstrap": "^1.0.3",
+    "body-parser": "^1.14.2",
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.3",
+    "request": "^2.67.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xigolle/openDataAntwerpen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xigolle/openDataAntwerpen/issues"
+  },
+  "homepage": "https://github.com/xigolle/openDataAntwerpen#readme"
+}

@@ -1,4 +1,4 @@
-﻿var app = angular.module("myapp", []);
+﻿var app = angular.module("myapp", ['ui.bootstrap']);
 
 
 var bootstrap = angular.module("myBootstrap", ['ui.bootstrap'])

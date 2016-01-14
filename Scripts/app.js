@@ -123,16 +123,17 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                     directionsDisplay.setMap(map);
                     $scope.calculateAndDisplayRoute(closest);
 
-                    calculateAndDisplayRoute(/*directionsService, directionsDisplay*/);
                     var service = new google.maps.DistanceMatrixService();
                     service.getDistanceMatrix(
                       {
+                          
                           origins: [initialLocation],
                           destinations: [{ lat: parseFloat(closest.point_lat), lng: parseFloat(closest.point_lng) }],
                           travelMode: google.maps.TravelMode.WALKING
                       }, callback);
 
                     function callback(response, status) {
+                        console.log(status);
                         console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
                     }
 

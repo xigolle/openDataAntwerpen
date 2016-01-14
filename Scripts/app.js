@@ -187,6 +187,15 @@ app.controller("ListController", function ($scope, $interval, $http, myService) 
     $scope.naam = "joey";
     $scope.value = "value";
     $scope.item = "item";
+    $scope.orderOptions = ["gemeente", "locatie"];
+    //$scope.order = "gemeente";
+    console.log("hoe vaak kom ik hier ");
+    $scope.change = function (value) {
+        console.log("change");
+
+        $scope.order = value;
+        console.log(value);
+    }
     $scope.test = OpenWifiData;
     //$scope.value = OpenWifiData.data;
     myService.async().then(function (d) {

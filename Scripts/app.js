@@ -136,7 +136,6 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                     $scope.calculateAndDisplayRoute(closest);
 
                     //calculateAndDisplayRoute(/*directionsService, directionsDisplay*/);
-<<<<<<< HEAD
                     var service = new google.maps.DistanceMatrixService();
                     service.getDistanceMatrix(
                       {
@@ -149,10 +148,8 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
 						//heb deze lijn gecomment heb geen idee wat het deed maar gaf wel error bij .text
                         console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
                     }
-=======
                    
                     
->>>>>>> refs/remotes/origin/master
 
                 }
             }

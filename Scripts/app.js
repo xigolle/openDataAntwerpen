@@ -56,6 +56,14 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
       
     
        initialize = function () {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> origin/master
+>>>>>>> refs/remotes/origin/master
+>>>>>>> origin/master
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
             map = new google.maps.Map(document.getElementById('map'), {

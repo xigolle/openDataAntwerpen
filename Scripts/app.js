@@ -121,9 +121,8 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                         title: "User"
                     });
                     directionsDisplay.setMap(map);
-<<<<<<< HEAD
                     $scope.calculateAndDisplayRoute(closest);
-=======
+
                     calculateAndDisplayRoute(/*directionsService, directionsDisplay*/);
                     var service = new google.maps.DistanceMatrixService();
                     service.getDistanceMatrix(
@@ -136,7 +135,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                     function callback(response, status) {
                         console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
                     }
->>>>>>> refs/remotes/origin/master
+
                 }
             }
 

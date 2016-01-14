@@ -37,18 +37,31 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+        <div ng-controller="ListController" class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
 
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="/api/openData">Json Data</a></li>
-
-
+                
+                <li class="dropdownLi">
+                    <div class="btn-group sortDropdown" uib-dropdown is-open="status.isopen">
+                        <button id="sortButton" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
+                            Order List <span class="caret"></span>
+                        </button>
+                        <ul ng-model="orderType" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                            <li ng-click="changeSort('gemeente')" ng-repeat="item in orderOptions" role="menuitem" >{{item}}</li>
+                            
+                        </ul>
+                    </div>
+                </li>
             </ul>
+
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <input type="text" class="form-control" ng-model="searchText" placeholder="Search">
+
                 </div>
+
                 <button type="submit" class="btn btn-default" ng-click="searchText= null">Clear</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
@@ -66,12 +79,13 @@
                 </div>
             </div>
             <div id="WifiSpots" ng-controller="ListController" class="col-sm-12 col-md-4 col-md-offset-2">
-                <div ng-repeat="item in openData | filter: searchText">
+                <div ng-repeat="item in openData  | filter: searchText">
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="row wifiSpots">
                                 <div class="col-md-3">{{item.locatie}}</div>
                                 <div class="col-md-3">{{item.gemeente}}</div>
+                                <div>{{orderlol}}</div>
                                 <div clas></div>
                                 <button ng-controller="MapController" ng-click="calculateAndDisplayRoute(item.objectid)" class="btn col-md-offset-3">Selecteer</button>
                             </div>

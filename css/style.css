@@ -27,12 +27,6 @@ li {
     -ms-word-wrap: break-word;
     word-wrap: break-word;
 }
-#sortButton{
-    background-color:transparent;
-    color:#777;
-    padding:15px;
-}
-
 #mapContainer {
     padding: 0;
     max-height: 100%;

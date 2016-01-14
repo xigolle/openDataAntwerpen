@@ -134,7 +134,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
 
                     function callback(response, status) {
 						//heb deze lijn gecomment heb geen idee wat het deed maar gaf wel error bij .text
-                        //console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
+                        console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
                     }
 
                 }
@@ -188,29 +188,9 @@ app.controller("ListController", function ($scope, $interval, $http, myService) 
     $scope.value = "value";
     $scope.item = "item";
     $scope.test = OpenWifiData;
-    $scope.alert = function (name) {
-        console.log(name);
-        $scope.orderlol = name;
-        console.log($scope.orderlol);
-    }
-    $scope.changeSort = function (value) {
-        
-        if ($scope.sort == value) {
-            $scope.reverse = !$scope.reverse;
-            return;
-        }
-        $scope.sort = value;
-        $scope.reverse = false;
-    }
-    $scope.orderlol = "gemeente";
     //$scope.value = OpenWifiData.data;
     myService.async().then(function (d) {
         $scope.openData = d;
-        $scope.orderBySelected = "gemeente";
-        $scope.orderOptions = ["gemeente","locatie"];
-        console.log("Open wifi data:");
-        console.log(d);
-        console.log($scope.orderOptions);
     })
     
 });

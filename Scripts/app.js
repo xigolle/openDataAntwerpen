@@ -1,7 +1,6 @@
-﻿var app = angular.module("myapp", []);
+﻿var app = angular.module("myapp", ['ui.bootstrap']);
 
 
-var bootstrap = angular.module("myBootstrap", ['ui.bootstrap'])
 
 
 
@@ -11,7 +10,7 @@ var initialLocation;
 var geoLocation = new Boolean();
 var distance = 999999999999999999999999999999999999;
 var closest;
-
+var OpenWifiDataReceivingStarted = false;
 app.factory('myService', function ($http) {
     var myService = {
         async: function () {
@@ -32,35 +31,37 @@ app.factory('myService', function ($http) {
 
 
 app.controller("MapController", function ($scope, $interval, $http, myService) {
+    $scope.myFunction = function () {
+        console.log("my function is working");
+    }
 
+
+    
     //function which retrieves the data when retrieved sets it in the correct variable
-    OpenWifiData = myService.async().then(function (d) {
-<<<<<<< HEAD
-        //$scope.data = d;
-        //console.log(OpenWifiData);
-        console.log("When am i done?");
-        initialize();
-    });
+    //because the button in the list gets created a lot of times it is trying to collect the data many times.
+    //this is solved by using this bool
+    if (!OpenWifiDataReceivingStarted) {
+        OpenWifiDataReceivingStarted = true;
+        OpenWifiData = myService.async().then(function (d) {
+            //$scope.data = d;
+            //console.log(OpenWifiData);
+            console.log("When am i done?");
+            initialize();
+        });
+    }
+    
 
-<<<<<<< HEAD
         
     
-        initialize = function () {
-=======
-=======
-        //when json data is retrieved update map
-        initialize();
-    });
->>>>>>> origin/master
+      
     
        initialize = function () {
->>>>>>> origin/master
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14
             });
-
+            console.log("ik kom hier te vroeg?");
             var icon = {
                 url: "../Images/WifiIcon.png",
                 scaledSize: new google.maps.Size(50,50)
@@ -144,13 +145,8 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
             });
         }
 
-<<<<<<< HEAD
-        //google.maps.event.addDomListener(window, 'load', initialize);
 
-=======
-        google.maps.event.addDomListener(window, 'load', initialize);
         
->>>>>>> origin/master
     
     //.error(function (err) {
     //    console.log(err);

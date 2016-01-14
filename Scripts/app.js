@@ -134,7 +134,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
 
                     function callback(response, status) {
 						//heb deze lijn gecomment heb geen idee wat het deed maar gaf wel error bij .text
-                        //console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
+                        console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
                     }
 
                 }

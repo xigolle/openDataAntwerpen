@@ -35,30 +35,15 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
 
     //function which retrieves the data when retrieved sets it in the correct variable
     OpenWifiData = myService.async().then(function (d) {
-<<<<<<< HEAD
         //$scope.data = d;
         //console.log(OpenWifiData);
         console.log("When am i done?");
         initialize();
     });
 
-<<<<<<< HEAD
-        
-    
-        initialize = function () {
-=======
-=======
-        //when json data is retrieved update map
-        initialize();
-    });
->>>>>>> origin/master
     
        initialize = function () {
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> origin/master
->>>>>>> refs/remotes/origin/master
+
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
             map = new google.maps.Map(document.getElementById('map'), {
@@ -120,10 +105,21 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                     });
                     directionsDisplay.setMap(map);
                     calculateAndDisplayRoute(/*directionsService, directionsDisplay*/);
+                    var service = new google.maps.DistanceMatrixService();
+                    service.getDistanceMatrix(
+                      {
+                          origins: [initialLocation],
+                          destinations: [{ lat: parseFloat(closest.point_lat), lng: parseFloat(closest.point_lng) }],
+                          travelMode: google.maps.TravelMode.WALKING
+                      }, callback);
+
+                    function callback(response, status) {
+                        console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
+                    }
                 }
             }
 
-           
+            
 
             /*directionsDisplay.setMap(map);
 
@@ -148,17 +144,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
             });
         }
 
-<<<<<<< HEAD
         //google.maps.event.addDomListener(window, 'load', initialize);
-
-=======
-        google.maps.event.addDomListener(window, 'load', initialize);
-        
->>>>>>> origin/master
-    
-    //.error(function (err) {
-    //    console.log(err);
-    //});
 
     
 

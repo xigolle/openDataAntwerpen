@@ -109,7 +109,8 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                     newDistance = Math.abs(userLat - parseFloat(OpenWifiData.data[i].point_lat)) + Math.abs(userLong - parseFloat(OpenWifiData.data[i].point_lng));
                     if (distance > newDistance) {
                         distance = newDistance;
-                        closest = OpenWifiData.data[i];
+                        closest = OpenWifiData.data[i].objectid -1;
+                        console.log("closest: " + closest);
                     }
                     
                 }
@@ -120,6 +121,8 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                         title: "User"
                     });
                     directionsDisplay.setMap(map);
+                    $scope.calculateAndDisplayRoute(closest);
+
                     calculateAndDisplayRoute(/*directionsService, directionsDisplay*/);
                     var service = new google.maps.DistanceMatrixService();
                     service.getDistanceMatrix(
@@ -132,6 +135,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
                     function callback(response, status) {
                         console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
                     }
+
                 }
             }
 
@@ -146,10 +150,12 @@ app.controller("MapController", function ($scope, $interval, $http, myService) {
         }
       
 
-        calculateAndDisplayRoute = function () {
+       $scope.calculateAndDisplayRoute = function (id ) {
+           console.log(id);
+           console.log(OpenWifiData.data[id].point_lat);
             directionsService.route({
                 origin: initialLocation,
-                destination: { lat: parseFloat(closest.point_lat), lng: parseFloat(closest.point_lng) },
+                destination: { lat: parseFloat(OpenWifiData.data[id].point_lat), lng: parseFloat(OpenWifiData.data[id].point_lng) },
                 travelMode: google.maps.TravelMode.WALKING
             }, function (response, status) {
                 if (status === google.maps.DirectionsStatus.OK) {

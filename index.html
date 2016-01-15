@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div id="WifiSpots" ng-controller="ListController" class="col-sm-12 col-md-4 col-md-offset-2">
-                <div  ng-repeat="item in openData | filter:searchText | orderBy: order">
+                <div  ng-repeat="item in openData | filter:searchText | orderBy: 'duration' : true">
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="row wifiSpots" >

@@ -140,10 +140,6 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
                       }, callback);
 
                     function callback(response, status) {
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 
                         $scope.$apply(function () {
                             console.log(response);

@@ -243,14 +243,15 @@ app.controller("ListController", function ($scope, $interval, $http, myService, 
     });
     $scope.opts = { order: "" };
     $scope.orderOptions = ["gemeente", "locatie","duration.value","distance.value"];
-    //$scope.order = "gemeente";
-    console.log("hoe vaak kom ik hier ");
     $scope.change = function (value) {
-        console.log("change");
+        $scope.$apply(function () {
+            $scope.opts.order = value;
+        });
+        //console.log("change");
 
         //$scope.order = value;
-        $scope.opts.order = value;
-        console.log($scope.opts.order);
+      
+        //console.log($scope.opts.order);
     }
     $scope.test = OpenWifiData;
     //$scope.value = OpenWifiData.data;

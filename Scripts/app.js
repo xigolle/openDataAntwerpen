@@ -219,7 +219,7 @@ app.controller("ListController", function ($scope, $interval, $http, myService, 
         OpenDataService.opendata = d;
 
         $scope.openData = OpenDataService.opendata;
-
+        $scope.order = "";
 
         //console.log($scope.openData);
 

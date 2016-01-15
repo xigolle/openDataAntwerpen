@@ -42,7 +42,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
 
     //function which retrieves the data when retrieved sets it in the correct variable
 
-
+    
 
     //because the button in the list gets created a lot of times it is trying to collect the data many times.
     //this is solved by using this bool
@@ -51,7 +51,6 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
         OpenWifiData = myService.async().then(function (d) {
             //$scope.data = d;
             //console.log(OpenWifiData);
-            console.log("When am i done?");
             initialize();
         });
     }
@@ -67,8 +66,8 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
         directionsDisplay = new google.maps.DirectionsRenderer;
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14
+            
         });
-        console.log("ik kom hier te vroeg?");
         var icon = {
             url: "../Images/WifiIcon.png",
             scaledSize: new google.maps.Size(50, 50)
@@ -77,15 +76,29 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
         // Try W3C Geolocation (Preferred)
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                geoLocation = true;
-                map.setCenter(initialLocation);
-                putMarkers(position.coords.latitude, position.coords.longitude, geoLocation);
+                console.log(position);
+                $scope.$apply(function () {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    geoLocation = true;
+                    map.setCenter(initialLocation);
+                    putMarkers(position.coords.latitude, position.coords.longitude, geoLocation);
+                });
+                //initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                //geoLocation = true;
+                //map.setCenter(initialLocation);
+                //putMarkers(position.coords.latitude, position.coords.longitude, geoLocation);
 
-            }, function () {
-                geoLocation = false;
-                handleNoGeolocation(geoLocation);
-            });
+            }, function (e) {
+                console.log(e);
+                $scope.$apply(function () {
+                    geoLocation = false;
+                    handleNoGeolocation(geoLocation);
+                    
+                });
+                navigator.geolocation.getCurrentPosition; 
+                //geoLocation = false;
+                //handleNoGeolocation(geoLocation);
+            }, {timout:5000, enableHighAccuracy:true,maximumAge:60000});
         }
             // Browser doesn't support Geolocation
         else {
@@ -99,7 +112,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
         }
 
         function putMarkers(userLat, userLong, geoLocationSucces) {
-
+            
             for (var i = 0 ; i < OpenWifiData.data.length; i++) {
                 marker = new google.maps.Marker({
                     map: map,
@@ -120,19 +133,26 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
                     var service = new google.maps.DistanceMatrixService();
                     service.getDistanceMatrix(
                       {
-                          
+
                           origins: [initialLocation],
                           destinations: [{ lat: parseFloat(OpenWifiData.data[i].point_lat), lng: parseFloat(OpenWifiData.data[i].point_lng) }],
                           travelMode: google.maps.TravelMode.WALKING
                       }, callback);
 
                     function callback(response, status) {
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 
+                        $scope.$apply(function () {
+                            console.log(response);
+                            OpenWifiData.data[callbackCounter].distance = response.rows[0].elements[0].distance
+                            OpenWifiData.data[callbackCounter].duration = response.rows[0].elements[0].duration
+                            callbackCounter++;
+                        });
                         //OpenWifiData.data[39].distance = response.rows[0].elements[0].distance.text;
-                        OpenWifiData.data[callbackCounter].distance = response.rows[0].elements[0].distance.text;
-                        OpenWifiData.data[callbackCounter].duration = response.rows[0].elements[0].duration.text;
-                        callbackCounter++;
+
                         //console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
 
                     }
@@ -220,22 +240,22 @@ app.controller("ListController", function ($scope, $interval, $http, myService, 
         OpenDataService.opendata = d;
 
         $scope.openData = OpenDataService.opendata;
-
+        //$scope.order = "";
 
         //console.log($scope.openData);
 
     });
-    $scope.naam = "joey";
-    $scope.value = "value";
-    $scope.item = "item";
-    $scope.orderOptions = ["gemeente", "locatie"];
-    //$scope.order = "gemeente";
-    console.log("hoe vaak kom ik hier ");
+    $scope.opts = { order: "" };
+    $scope.orderOptions = ["gemeente", "locatie","duration.value","distance.value"];
     $scope.change = function (value) {
-        console.log("change");
+        $scope.$apply(function () {
+            $scope.opts.order = value;
+        });
+        //console.log("change");
 
-        $scope.order = value;
-        console.log(value);
+        //$scope.order = value;
+      
+        //console.log($scope.opts.order);
     }
     $scope.test = OpenWifiData;
     //$scope.value = OpenWifiData.data;

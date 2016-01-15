@@ -59,3 +59,17 @@ li {
         position: fixed !important;
     }
 }
+@media (max-width: 991px) {
+    #map {
+        height: 500px;
+        width: 100%;
+        margin-bottom: 60px;
+    }
+}
+
+@media (max-width: 767px) {
+    #map {
+        top: 0;
+        margin-bottom: 20px;
+    }
+}

@@ -116,17 +116,35 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
                     console.log("closest: " + closest);
                 }
                 if (geoLocationSucces) {
+<<<<<<< HEAD
+                    marker = new google.maps.Marker({
+                        map: map,
+                        position: initialLocation,
+                        title: "User"
+                    });
+                    directionsDisplay.setMap(map);
+                    $scope.calculateAndDisplayRoute(closest);
+
+=======
+>>>>>>> origin/master
                     var service = new google.maps.DistanceMatrixService();
                     service.getDistanceMatrix(
                       {
+                          
                           origins: [initialLocation],
                           destinations: [{ lat: parseFloat(OpenWifiData.data[i].point_lat), lng: parseFloat(OpenWifiData.data[i].point_lng) }],
                           travelMode: google.maps.TravelMode.WALKING
                       }, callback);
 
                     function callback(response, status) {
+<<<<<<< HEAD
+                        console.log(status);
+                        console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
+                    }
+=======
                         //console.log(response);
                         //console.log(i);
+>>>>>>> origin/master
 
                         //OpenWifiData.data[39].distance = response.rows[0].elements[0].distance.text;
                         OpenWifiData.data[callbackCounter].distance = response.rows[0].elements[0].distance.text;

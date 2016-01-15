@@ -19,10 +19,25 @@ li {
     width: 65%;
     height: 95%;
 }
+#sortButton{
+    background-color:transparent;
+    color:#777;
+    padding:15px;
+}
+#OverText{
+    font-size:20px;
+    font-weight:bold;
+   
+    margin:0 auto;
+}
 /*#WifiSpots{
     max-height:500px;
     overflow-y:auto;
 }*/
+.wifiSpots {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
 #mapContainer {
     padding: 0;
     max-height: 100%;

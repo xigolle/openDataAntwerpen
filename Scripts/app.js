@@ -77,14 +77,25 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
         // Try W3C Geolocation (Preferred)
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                geoLocation = true;
-                map.setCenter(initialLocation);
-                putMarkers(position.coords.latitude, position.coords.longitude, geoLocation);
+                $scope.$apply(function () {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    geoLocation = true;
+                    map.setCenter(initialLocation);
+                    putMarkers(position.coords.latitude, position.coords.longitude, geoLocation);
+                });
+                //initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                //geoLocation = true;
+                //map.setCenter(initialLocation);
+                //putMarkers(position.coords.latitude, position.coords.longitude, geoLocation);
 
             }, function () {
-                geoLocation = false;
-                handleNoGeolocation(geoLocation);
+                $scope.$apply(function () {
+                    geoLocation = false;
+                    handleNoGeolocation(geoLocation);
+                });
+
+                //geoLocation = false;
+                //handleNoGeolocation(geoLocation);
             });
         }
             // Browser doesn't support Geolocation
@@ -116,17 +127,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
                     console.log("closest: " + closest);
                 }
                 if (geoLocationSucces) {
-<<<<<<< HEAD
-                    marker = new google.maps.Marker({
-                        map: map,
-                        position: initialLocation,
-                        title: "User"
-                    });
-                    directionsDisplay.setMap(map);
-                    $scope.calculateAndDisplayRoute(closest);
 
-=======
->>>>>>> origin/master
                     var service = new google.maps.DistanceMatrixService();
                     service.getDistanceMatrix(
                       {
@@ -137,19 +138,14 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
                       }, callback);
 
                     function callback(response, status) {
-<<<<<<< HEAD
-                        console.log(status);
-                        console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
-                    }
-=======
-                        //console.log(response);
-                        //console.log(i);
->>>>>>> origin/master
 
+                        $scope.$apply(function () {
+                            OpenWifiData.data[callbackCounter].distance = response.rows[0].elements[0].distance.text;
+                            OpenWifiData.data[callbackCounter].duration = response.rows[0].elements[0].duration.text;
+                            callbackCounter++;
+                        });
                         //OpenWifiData.data[39].distance = response.rows[0].elements[0].distance.text;
-                        OpenWifiData.data[callbackCounter].distance = response.rows[0].elements[0].distance.text;
-                        OpenWifiData.data[callbackCounter].duration = response.rows[0].elements[0].duration.text;
-                        callbackCounter++;
+                       
                         //console.log(response.rows[0].elements[0].distance.text + "," + response.rows[0].elements[0].duration.text);
 
                     }
@@ -237,22 +233,21 @@ app.controller("ListController", function ($scope, $interval, $http, myService, 
         OpenDataService.opendata = d;
 
         $scope.openData = OpenDataService.opendata;
-        $scope.order = "";
+        //$scope.order = "";
 
         //console.log($scope.openData);
 
     });
-    $scope.naam = "joey";
-    $scope.value = "value";
-    $scope.item = "item";
+    $scope.opts = { order: "" };
     $scope.orderOptions = ["gemeente", "locatie"];
     //$scope.order = "gemeente";
     console.log("hoe vaak kom ik hier ");
     $scope.change = function (value) {
         console.log("change");
 
-        $scope.order = value;
-        console.log(value);
+        //$scope.order = value;
+        $scope.opts.order = value;
+        console.log($scope.opts.order);
     }
     $scope.test = OpenWifiData;
     //$scope.value = OpenWifiData.data;

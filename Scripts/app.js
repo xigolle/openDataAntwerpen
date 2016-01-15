@@ -98,7 +98,7 @@ app.controller("MapController", function ($scope, $interval, $http, myService, O
                 navigator.geolocation.getCurrentPosition; 
                 //geoLocation = false;
                 //handleNoGeolocation(geoLocation);
-            }, {timout:5000, enableHighAccuracy:true,maximumAge:60000});
+            }, {timout:2000, enableHighAccuracy:true,maximumAge:60000});
         }
             // Browser doesn't support Geolocation
         else {
@@ -244,9 +244,8 @@ app.controller("ListController", function ($scope, $interval, $http, myService, 
     $scope.opts = { order: "" };
     $scope.orderOptions = ["gemeente", "locatie","duration.value","distance.value"];
     $scope.change = function (value) {
-        $scope.$apply(function () {
-            $scope.opts.order = value;
-        });
+        $scope.opts.order = value;
+        console.log($scope.opts.order);
         //console.log("change");
 
         //$scope.order = value;

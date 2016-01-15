@@ -41,7 +41,7 @@
 
             <ul class="nav navbar-nav" ng-controller="ListController">
                 <li class="active"><a href="#">Home</a></li>
-                <li ng-click="change('gemeente')"><a>locatie</a></li>
+                <!--<li ng-click="change('gemeente')"><a>locatie</a></li>-->
                 <li><a href="over.html">Over</a></li>
                 <!--<li class="dropdownLi" ng-controller="ListController">
                     <div class="btn-group sortDropdown" uib-dropdown is-open="status.isopen">
@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div id="WifiSpots" ng-controller="ListController" class="col-sm-12 col-md-4 col-md-offset-2">
-                <div  ng-repeat="item in openData | filter:searchText | orderBy: 'duration.value' : false">
+                <div  ng-repeat="item in openData | filter:searchText | orderBy: opts.order : false">
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="row wifiSpots" >

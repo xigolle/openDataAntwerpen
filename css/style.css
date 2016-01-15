@@ -24,6 +24,12 @@ li {
     color:#777;
     padding:15px;
 }
+#OverText{
+    font-size:20px;
+    font-weight:bold;
+   
+    margin:0 auto;
+}
 /*#WifiSpots{
     max-height:500px;
     overflow-y:auto;
